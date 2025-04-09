@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NeonID Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+    
+  
+</head>
+<body>
+  <!-- Entrance Animation -->
+  <div class="entrance-animation">
+    <div class="neon-logo">NEON ID</div>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+  </div>
+  
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+  
+  <div class="container animate__animated animate__fadeIn">
+    <h1>⚡ NeonID Identity Check ⚡</h1>
+    <p class="subtitle">Please verify yourself with a quick camera scan</p>
+
+    <div class="camera-box">
+      <video id="video" autoplay playsinline></video>
+      <div class="camera-placeholder" id="placeholder">
+        <div class="camera-icon">📷</div>
+        <div>Camera feed will appear here</div>
+      </div>
+      <div class="scan-line" id="scanLine"></div>
+    </div>
+
+    <button id="startBtn">💀 Start Scan</button>
+    <p class="note">No data is stored. Just a flash verification.</p>
+  </div>
+<!-- 
+  <script>
+    
+    // Camera functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      
+      const video = document.getElementById('video');
+      const startBtn = document.getElementById('startBtn');
+      const placeholder = document.getElementById('placeholder');
+      const scanLine = document.getElementById('scanLine');
+      
+      startBtn.addEventListener('click', async () => {
+        try {
+          startBtn.disabled = true;
+          startBtn.textContent = 'Initializing...';
+          
+          const stream = await navigator.mediaDevices.getUserMedia({ 
+            video: { 
+              facingMode: 'user',
+              width: { ideal: 1280 },
+              height: { ideal: 720 }
+            } 
+          });
+          
+          video.srcObject = stream;
+          video.style.display = 'block';
+          placeholder.style.display = 'none';
+          scanLine.style.opacity = '1';
+          
+          startBtn.textContent = 'Scanning...';
+          startBtn.style.background = 'linear-gradient(45deg, var(--neon-pink), var(--neon-purple))';
+          
+          // Simulate scan completion after 3 seconds
+          setTimeout(() => {
+            scanLine.style.opacity = '0';
+            startBtn.textContent = '✓ Verification Complete';
+            startBtn.style.background = 'linear-gradient(45deg, #00cc66, #00ff88)';
+            
+            // Stop camera after another 2 seconds
+            setTimeout(() => {
+              stream.getTracks().forEach(track => track.stop());
+              video.style.display = 'none';
+              placeholder.style.display = 'flex';
+              startBtn.textContent = 'Scan Again';
+              startBtn.style.background = 'linear-gradient(45deg, var(--neon-blue), var(--neon-purple))';
+              startBtn.disabled = false;
+            }, 2000);
+          }, 3000);
+        } catch (err) {
+          console.error('Error accessing camera:', err);
+          placeholder.innerHTML = `<div style="color: #ff4444">Camera access denied<br>Please allow camera permissions</div>`;
+          startBtn.textContent = 'Try Again';
+          startBtn.disabled = false;
+        }
+      });
+    });
+  </script> -->
+  <script src="script.js"></script>
+</body>
+</html>

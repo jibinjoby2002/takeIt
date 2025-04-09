@@ -1,0 +1,303 @@
+:root {
+    --neon-blue: #08f;
+    --neon-pink: #f0f;
+    --neon-purple: #90f;
+    --dark-bg: #0a0a12;
+    --darker-bg: #050508;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--dark-bg);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(0, 136, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.15) 0%, transparent 50%);
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 136, 255, 0.3);
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+  
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-pink), transparent);
+    border-radius: 100%;
+    filter: blur(1px);
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #aaa;
+    font-weight: 300;
+  }
+  
+  .camera-box {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin: 2rem auto;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 136, 255, 0.2);
+    border: 2px solid rgba(0, 136, 255, 0.3);
+    background-color: var(--darker-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .camera-box::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    z-index: -1;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-purple));
+    filter: blur(20px);
+    opacity: 0.7;
+    animation: rotateBorder 8s linear infinite;
+  }
+  
+  @keyframes rotateBorder {
+    0% { filter: hue-rotate(0deg) blur(20px); }
+    100% { filter: hue-rotate(360deg) blur(20px); }
+  }
+  
+  #video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  
+  .camera-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #555;
+  }
+  
+  .camera-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+  
+  #startBtn {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 136, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #startBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 136, 255, 0.8);
+  }
+  
+  #startBtn:active {
+    transform: translateY(1px);
+  }
+  
+  #startBtn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    transition: all 0.3s;
+  }
+  
+  #startBtn:hover::before {
+    animation: shine 1.5s infinite;
+  }
+  
+  @keyframes shine {
+    0% { left: -50%; }
+    100% { left: 150%; }
+  }
+  
+  .note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+  
+  /* Floating particles */
+  .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 136, 255, 0.5);
+    animation: float linear infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+  }
+  
+  /* Scan animation */
+  .scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to bottom, 
+      transparent, 
+      rgba(0, 255, 255, 0.7), 
+      transparent);
+    opacity: 0;
+    filter: blur(1px);
+    animation: scan 3s infinite;
+  }
+  
+  @keyframes scan {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  
+  /* Entrance animation */
+  .entrance-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeOut 1s ease-in-out 2s forwards;
+  }
+  
+  .neon-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 136, 255, 0.5);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+  }
+  
+  .loading-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 1s forwards;
+  }
+  
+  .loading-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+    animation: load 1.5s ease-in-out 1s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+  
+  @keyframes load {
+    to { width: 100%; }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .camera-box {
+      height: 250px;
+    }
+  }
+
+  
